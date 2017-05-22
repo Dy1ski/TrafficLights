@@ -8,7 +8,8 @@
 public class TrafficController
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private TrafficState currentState;
+    private TrafficState nextState;
 
     /**
      * Constructor for objects of class TrafficController
@@ -16,7 +17,8 @@ public class TrafficController
     public TrafficController()
     {
         // initialise instance variables
-        x = 0;
+        this.nextState=TrafficState.GreenEastWestTraffic;
+        this.currentState=nextState;
     }
 
     /**
@@ -25,9 +27,18 @@ public class TrafficController
      * @param  y   a sample parameter for a method
      * @return     the sum of x and y 
      */
-    public int sampleMethod(int y)
+    public TrafficState getCurrentState()
     {
         // put your code here
-        return x + y;
+        return this.currentState;
+    }
+    
+    public void setNextState(TrafficState pNextState)
+    {
+        this.nextState=pNextState;
+    }
+    
+    public void setCurrentState(){
+        this.currentState=this.nextState;
     }
 }

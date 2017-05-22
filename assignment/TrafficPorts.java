@@ -29,10 +29,10 @@ public class TrafficPorts
     private GpioPinDigitalInput EastVehBtn ;
     private GpioPinDigitalInput WestVehBtn ;
 
-    GpioPinDigitalInput NorthEmeBtn ;
-    GpioPinDigitalInput SouthEmeBtn ;
-    GpioPinDigitalInput EastEmeBtn ;
-    GpioPinDigitalInput WestEmeBtn;
+    private GpioPinDigitalInput NorthEmeBtn ;
+    private GpioPinDigitalInput SouthEmeBtn ;
+    private GpioPinDigitalInput EastEmeBtn ;
+    private GpioPinDigitalInput WestEmeBtn;
     
     /**
      * Constructor for objects of class TrafficPorts
@@ -69,27 +69,27 @@ public class TrafficPorts
      * @param  y   a sample parameter for a method
      * @return     the sum of x and y 
      */
-    public void set_North_South_high(TrafficLightsColor i)
+    public void set_North_South_Traffic_high(TrafficLightsColor i)
     {
         // put your code here
         North_South_Traffic[i.ordinal()].high();
         
     }
     
-    public void set_North_South_low(TrafficLightsColor i)
+    public void set_North_South_Traffic_low(TrafficLightsColor i)
     {
         // put your code here
         North_South_Traffic[i.ordinal()].low();
         
     }
     
-    public void set_East_West_high(TrafficLightsColor i)
+    public void set_East_West_Traffic_high(TrafficLightsColor i)
     {
         // put your code here
         East_West_Traffic[i.ordinal()].high();
     }
     
-    public void set_East_West_low(TrafficLightsColor i)
+    public void set_East_West_Traffic_low(TrafficLightsColor i)
     {
         // put your code here
         East_West_Traffic[i.ordinal()].low();

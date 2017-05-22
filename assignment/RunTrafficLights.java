@@ -1,22 +1,20 @@
 
 /**
- * Write a description of class Test here.
+ * Write a description of class RunTrafficLights here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Test
+public class RunTrafficLights
 {
     // instance variables - replace the example below with your own
-    private int x;
 
     /**
-     * Constructor for objects of class Test
+     * Constructor for objects of class RunTrafficLights
      */
-    public Test()
+    public RunTrafficLights()
     {
-        // initialise instance variables
-        x = 0;
+        
     }
 
     /**
@@ -25,7 +23,7 @@ public class Test
      * @param  y   a sample parameter for a method
      * @return     the sum of x and y 
      */
-    public void test()
+    public void run()
     {
         // put your code here
         TrafficPorts TP1 = new TrafficPorts();
@@ -57,7 +55,7 @@ public class Test
                     if(TC1.getCurrentState()==TrafficState.GreenEastWestTraffic){
                         TP1.set_North_South_Traffic_high(TrafficLightsColor.Red);
                         TP1.set_East_West_Traffic_high(TrafficLightsColor.Green);
-                        if (T1.EmergencyTimeOut()){
+                        if (T1.EmergencyTimeOut()&&(TP1.isEastEmeHigh()==false && TP1.isWestEmeHigh()==false)){
                             if(TP1.isNorthEmeHigh()==true || TP1.isSouthEmeHigh()==true){
                                 System.out.println(TC1.getCurrentState().toString());
                                  T1.clearCount();
@@ -66,7 +64,8 @@ public class Test
                         }
                         
                         if(T1.StandardTimeOut()){
-                             if(TP1.isSouthVehHigh()==true|| TP1.isNorthVehHigh()==true){
+                             if((TP1.isSouthVehHigh()==true|| TP1.isNorthVehHigh()==true)&&
+                             (TP1.isWestEmeHigh()==false&&TP1.isEastEmeHigh()==false)){
                                  System.out.println(TC1.getCurrentState().toString());
                                  T1.clearCount();
                                  TC1.setNextState(TrafficState.AmberEastWestTraffic);
@@ -75,27 +74,13 @@ public class Test
                         }
                     }
                     
-                    if(TC1.getCurrentState()==TrafficState.GreenEastWestPedestrian){
-                        if(T1.PedestrianTimeOut()){
-                             if(TP1.isSouthVehHigh()==true|| TP1.isNorthVehHigh()==true){
-                                 System.out.println(TC1.getCurrentState().toString());
-                                 T1.clearCount();
-                                 TC1.setNextState(TrafficState.AmberEastWestTraffic);
-                             
-                             }
-                             else{
-                                 System.out.println(TC1.getCurrentState().toString());
-                                 T1.clearCount();
-                                 TC1.setNextState(TrafficState.GreenEastWestTraffic);
-                             }
-                        }
-                    }
                     
                     if(TC1.getCurrentState()==TrafficState.AmberEastWestTraffic){
                         TP1.set_North_South_Traffic_high(TrafficLightsColor.Amber);
                         TP1.set_East_West_Traffic_high(TrafficLightsColor.Amber);
                         if (T1.EmergencyTimeOut()){
-                            if(TP1.isNorthEmeHigh()==true || TP1.isSouthEmeHigh()==true){
+                            if(TP1.isNorthEmeHigh()==true || TP1.isSouthEmeHigh()==true ||
+                            TP1.isEastEmeHigh()==true || TP1.isWestEmeHigh()==true){
                                 System.out.println(TC1.getCurrentState().toString());
                                 T1.clearCount();
                                 TC1.setNextState(TrafficState.GreenNorthSouthTraffic);
@@ -113,7 +98,7 @@ public class Test
                         TP1.set_North_South_Traffic_high(TrafficLightsColor.Green);
                         TP1.set_East_West_Traffic_high(TrafficLightsColor.Red);
                         
-                        if(T1.EmergencyTimeOut()){
+                        if(T1.EmergencyTimeOut()&&(TP1.isNorthEmeHigh()==false && TP1.isSouthEmeHigh()==false)){
                             if(TP1.isEastEmeHigh()==true || TP1.isWestEmeHigh()==true){
                                 System.out.println(TC1.getCurrentState().toString());
                                  T1.clearCount();
@@ -121,7 +106,8 @@ public class Test
                             }
                         }
                         if(T1.StandardTimeOut()){
-                             if(TP1.isEastVehHigh()==true || TP1.isWestVehHigh()==true){
+                             if((TP1.isEastVehHigh()==true || TP1.isWestVehHigh()==true)&&
+                             (TP1.isNorthEmeHigh()==false&& TP1.isSouthEmeHigh()==false)){
                                  System.out.println(TC1.getCurrentState().toString());
                                  T1.clearCount();
                                  TC1.setNextState(TrafficState.AmberNorthSouthTraffic);
@@ -130,27 +116,13 @@ public class Test
                         }
                     }
                     
-                    if(TC1.getCurrentState()==TrafficState.GreenNorthSouthPedestrian){
-                        if(T1.PedestrianTimeOut()){
-                             if(TP1.isEastVehHigh()==true || TP1.isWestVehHigh()==true){
-                                 System.out.println(TC1.getCurrentState().toString());
-                                 T1.clearCount();
-                                 TC1.setNextState(TrafficState.AmberNorthSouthTraffic);
-                             
-                             }
-                             else{
-                                 System.out.println(TC1.getCurrentState().toString());
-                                 T1.clearCount();
-                                 TC1.setNextState(TrafficState.GreenNorthSouthTraffic);
-                             }
-                        }
-                    }
                     
                     if(TC1.getCurrentState()==TrafficState.AmberNorthSouthTraffic){
                         TP1.set_North_South_Traffic_high(TrafficLightsColor.Amber);
                         TP1.set_East_West_Traffic_high(TrafficLightsColor.Amber);
                         if(T1.EmergencyTimeOut()){
-                            if(TP1.isEastEmeHigh()==true || TP1.isWestEmeHigh()==true){
+                            if(TP1.isEastEmeHigh()==true || TP1.isWestEmeHigh()==true ||
+                            TP1.isNorthEmeHigh()==true || TP1.isSouthEmeHigh()==true){
                                 System.out.println(TC1.getCurrentState().toString());
                                 T1.clearCount();
                                 TC1.setNextState(TrafficState.GreenEastWestTraffic);
@@ -171,31 +143,5 @@ public class Test
         
         combinationalThread.start();
         syncThread.start();
-        //test.start();
-        
-        /*
-        while(true){
-           
-           if(T1.StandardTimeOut()){
-               if(TP1.isSouthVehHigh()){
-                   System.out.println(" --> Time Out");
-                   T1.clearCount();
-                   System.out.println(" --> GPIO PIN STATE CHANGE: High");
-                   TP1.set_North_South_high(TrafficLightsColor.Red);
-               }
-               
-            }
-            if(T1.EmergencyTimeOut()){
-               if(TP1.isEastVehHigh()){
-                   System.out.println(" --> Time Out");
-                   T1.clearCount();
-                   System.out.println(" --> GPIO PIN STATE CHANGE: Low");
-                   TP1.set_North_South_low(TrafficLightsColor.Red);
-               }    
-            }
-            T1.delayPeriod();
-        }
-        */
     }
-    
 }

@@ -7,12 +7,13 @@
  */
 
 
-import java.util.*;
 
-public class Timer
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class Timer 
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private AtomicInteger count;
     
     
 
@@ -22,26 +23,48 @@ public class Timer
     public Timer()
     {
         // initialise instance variables
-        x = 0;
+        count = new AtomicInteger(0);
     }
-
+    
     /**
      * An example of a method - replace this comment with your own
      * 
      * @param  y   a sample parameter for a method
      * @return     the sum of x and y 
      */
-    public void VehiclePedestrianDelay()
+    public boolean StandardTimeOut()
     {
         // put your code here
-        sleepMillisec(5000);
+        if (this.count.get() >= 5000) {
+            return true;
+        }
+        else{
+            return false;
+        }
         
     }
     
-    public void EmergencyDelay()
+    public  boolean PedestrianTimeOut()
     {
         // put your code here
-        sleepMillisec(2000);
+        if (this.count.get() >= 3000) {
+            return true;
+        }
+        else{
+            return false;
+        }
+        
+    }
+    
+    public boolean EmergencyTimeOut()
+    {
+        // put your code here
+        if (this.count.get() >= 1000) {
+            return true;
+        }
+        else{
+            return false;
+        }
         
     }
     
@@ -55,6 +78,28 @@ public class Timer
         {
         }
     }
+    
+    public void delayPeriod()
+    {
+       sleepMillisec(1);
+       this.count.incrementAndGet();
+    }
+    
+    public void congestion()
+    {
+      this.count.addAndGet(200);  
+    }
+    
+    public int getCount()
+    {
+      return this.count.get();    
+    }
+    
+    public void clearCount()
+    {
+       this.count.set(0); 
+    }
+    
     
     
 }
