@@ -7,5 +7,5 @@
  */
 public enum TrafficState
 {
-    GreenEastWestTraffic, AmberEastWestTraffic, GreenEastWestPedestrian, GreenNorthSouthTraffic, AmberNorthSouthTraffic, GreenNorthSouthPedestrian
+    GreenEastWestTraffic, AmberEastWestTraffic, GreenNorthSouthTraffic, AmberNorthSouthTraffic
 }
