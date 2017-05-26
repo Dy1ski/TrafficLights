@@ -12,7 +12,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Timer 
 {
-    // instance variables - replace the example below with your own
     private AtomicInteger count;
     
     
